@@ -1,0 +1,47 @@
+
+.title{
+    text-align: center;
+}
+.grid {
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #F1DFB4;
+    margin: auto;
+    border: 5px solid #D6C394;
+}
+
+.grid div {
+    height: 40px;
+    width: 40px;
+}
+
+.notchecked {
+    background-image: url('img/grid-div.svg');
+}
+
+.checked {
+    background-image: url('img/checked.svg');
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 30px;
+}
+
+.bomb {
+    /*background-color: orange;*/
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    font-size: 30px;
+}
+
+.flag {
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 30px;
+}
