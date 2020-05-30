@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
+    const flagsLeft = document.querySelector('#flags-left')
     let width = 10
-    let bombAmount = 20
+    let bombsArray = [5,10,15,20]
+    let bombAmount = bombsArray[Math.floor(Math.random() * bombsArray.length)]
     let flags = 0
     let squares = []
     let isGameOver = false
+    flagsLeft.innerHTML = bombAmount
 
     //create Board
     function createBoard() {
@@ -31,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             square.oncontextmenu = function(e) {
                 e.preventDefault()
                 addFlag(square)
+                let result = bombAmount - flags
+                flagsLeft.innerHTML = result
             }
         }
 
@@ -67,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 squares[i].setAttribute('data', total)
             }
+
         }
     }
     createBoard()
@@ -81,11 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 square.classList.add('flag')
                 square.innerHTML = '🏴‍☠️'
                 flags += 1
+                
                 checkForWin()
             }else {
                 square.classList.remove('flag')
                 square.innerHTML = ''
                 flags -= 1
+                
             }
         }
     }
@@ -107,6 +115,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 square.classList.add('checked')
                 square.classList.remove('notchecked')
                 square.innerHTML = total
+                if (total == 1) {
+                    square.style.color = '#E84C3B'
+                }
+                if (total == 2) {
+                    square.style.color = '#3599DA'
+                }
+                if (total == 3) {
+                    square.style.color = '#2FCC71'
+                }
+                if (total == 4) {
+                    square.style.color = '#9B59B6'
+                }
+                if (total >= 5) {
+                    square.style.color = '#E67D23'
+                }
                 return
             }
             checkSquare(square, currentId) 
@@ -184,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 matches += 1
             }
             if (matches === bombAmount) {
+                flagsLeft.innerHTML = 'YOU WON!'
                 alert('YOU WON!')
             }
         }
